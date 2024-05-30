@@ -1,0 +1,124 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: machine_learning_101_intro
+chapters:
+  - file: mathematical_foundations/mathematical_foundations
+    sections:
+      - file: mathematical_foundations/linear_algebra/linear_algebra
+        sections: 
+          - file: mathematical_foundations/linear_algebra/vectors_and_matrices
+          - file: mathematical_foundations/linear_algebra/eigenvalues_and_eigenvectors
+      - file: mathematical_foundations/calculus/calculus
+        sections:
+          - file: mathematical_foundations/calculus/derivatives
+          - file: mathematical_foundations/calculus/integrals
+      - file: mathematical_foundations/probability_and_statistics/probability_and_statistics
+        sections:
+          - file: mathematical_foundations/probability_and_statistics/probability_distributions
+          - file: mathematical_foundations/probability_and_statistics/bayes_theorem
+          - file: mathematical_foundations/probability_and_statistics/descriptive_statistics
+          - file: mathematical_foundations/probability_and_statistics/inferential_statistics
+  - file: machine_learning_algorithms/machine_learning_algorithms
+    sections:
+      - file: machine_learning_algorithms/supervised_learning/supervised_learning
+        sections:
+          - file: machine_learning_algorithms/supervised_learning/linear_regression
+          - file: machine_learning_algorithms/supervised_learning/logistic_regression
+          - file: machine_learning_algorithms/supervised_learning/decision_trees_and_random_forests
+          - file: machine_learning_algorithms/supervised_learning/support_vector_machines
+          - file: machine_learning_algorithms/supervised_learning/k_nearest_neighbors
+          - file: machine_learning_algorithms/supervised_learning/neural_networks_and_deep_learning
+      - file: machine_learning_algorithms/unsupervised_learning/unsupervised_learning
+        sections:
+          - file: machine_learning_algorithms/unsupervised_learning/clustering/clustering
+            sections:
+              - file: machine_learning_algorithms/unsupervised_learning/clustering/k_means
+              - file: machine_learning_algorithms/unsupervised_learning/clustering/hierarchical
+              - file: machine_learning_algorithms/unsupervised_learning/clustering/dbscan
+          - file: machine_learning_algorithms/unsupervised_learning/dimensionality_reduction/dimensionality_reduction
+            sections:
+              - file: machine_learning_algorithms/unsupervised_learning/dimensionality_reduction/pca
+              - file: machine_learning_algorithms/unsupervised_learning/dimensionality_reduction/t_sne
+          - file: machine_learning_algorithms/unsupervised_learning/association_rules/association_rules
+            sections:
+              - file: machine_learning_algorithms/unsupervised_learning/association_rules/apriori
+              - file: machine_learning_algorithms/unsupervised_learning/association_rules/eclat
+      - file: machine_learning_algorithms/reinforcement_learning/reinforcement_learning
+        sections:
+          - file: machine_learning_algorithms/reinforcement_learning/markov_decision_processes
+          - file: machine_learning_algorithms/reinforcement_learning/q_learning
+          - file: machine_learning_algorithms/reinforcement_learning/deep_q_networks
+  - file: model_evaluation_and_validation/model_evaluation_and_validation
+    sections:
+      - file: model_evaluation_and_validation/train_test_split
+      - file: model_evaluation_and_validation/cross_validation
+      - file: model_evaluation_and_validation/evaluation_metrics/evaluation_metrics
+        sections:
+          - file: model_evaluation_and_validation/evaluation_metrics/accuracy
+          - file: model_evaluation_and_validation/evaluation_metrics/precision
+          - file: model_evaluation_and_validation/evaluation_metrics/recall
+          - file: model_evaluation_and_validation/evaluation_metrics/f1_score
+          - file: model_evaluation_and_validation/evaluation_metrics/roc_auc
+          - file: model_evaluation_and_validation/evaluation_metrics/confusion_matrix
+  - file: feature_engineering/feature_engineering
+    sections:
+      - file: feature_engineering/feature_selection
+      - file: feature_engineering/feature_scaling_and_normalization
+      - file: feature_engineering/handling_missing_values
+      - file: feature_engineering/encoding_categorical_variables
+  - file: data_preprocessing/data_preprocessing
+    sections:
+      - file: data_preprocessing/data_cleaning
+      - file: data_preprocessing/data_transformation
+      - file: data_preprocessing/data_augmentation
+  - file: overfitting_and_underfitting/overfitting_and_underfitting
+    sections:
+      - file: overfitting_and_underfitting/bias_variance_tradeoff
+      - file: overfitting_and_underfitting/regularization_techniques/regularization_techniques
+        sections:
+          - file: overfitting_and_underfitting/regularization_techniques/l1
+          - file: overfitting_and_underfitting/regularization_techniques/l2
+          - file: overfitting_and_underfitting/regularization_techniques/dropout
+      - file: overfitting_and_underfitting/cross_validation
+  - file: neural_networks_and_deep_learning/neural_networks_and_deep_learning
+    sections:
+      - file: neural_networks_and_deep_learning/perceptrons
+      - file: neural_networks_and_deep_learning/multi_layer_perceptrons
+      - file: neural_networks_and_deep_learning/backpropagation
+      - file: neural_networks_and_deep_learning/convolutional_neural_networks
+      - file: neural_networks_and_deep_learning/recurrent_neural_networks
+      - file: neural_networks_and_deep_learning/transfer_learning
+  - file: advanced_topics/advanced_topics
+    sections:
+      - file: advanced_topics/natural_language_processing/natural_language_processing 
+        sections:
+          - file: advanced_topics/natural_language_processing/text_preprocessing
+          - file: advanced_topics/natural_language_processing/word_embeddings
+          - file: advanced_topics/natural_language_processing/sequence_models
+      - file: advanced_topics/computer_vision/computer_vision 
+        sections:
+          - file: advanced_topics/computer_vision/image_preprocessing
+          - file: advanced_topics/computer_vision/object_detection
+          - file: advanced_topics/computer_vision/generative_models
+      - file: advanced_topics/time_series_analysis/time_series_analysis 
+        sections:
+          - file: advanced_topics/time_series_analysis/time_series_decomposition
+          - file: advanced_topics/time_series_analysis/arima
+          - file: advanced_topics/time_series_analysis/lstm_networks
+  - file: tools_and_libraries/tools_and_libraries
+    sections: 
+      - file: tools_and_libraries/programming_languages
+      - file: tools_and_libraries/libraries_and_frameworks/libraries_and_frameworks
+        sections:
+          - file: tools_and_libraries/libraries_and_frameworks/scikit_learn
+          - file: tools_and_libraries/libraries_and_frameworks/tensorflow
+          - file: tools_and_libraries/libraries_and_frameworks/keras
+          - file: tools_and_libraries/libraries_and_frameworks/pytorch
+          - file: tools_and_libraries/libraries_and_frameworks/pandas
+          - file: tools_and_libraries/libraries_and_frameworks/numpy
+      - file: tools_and_libraries/jupyter_notebooks
+  - file: projects_and_case_studies/projects_and_case_studies
+  - file: ethics_and_best_practices/ethics_and_best_practices
+  - file: resources_for_further_learning/resources_for_further_learning
