@@ -37,7 +37,19 @@ chapters:
               - file: machine_learning_algorithms/supervised_learning/linear_regression/advanced_topics
               - file: machine_learning_algorithms/supervised_learning/linear_regression/case_studies
               - file: machine_learning_algorithms/supervised_learning/linear_regression/conclusion
-          - file: machine_learning_algorithms/supervised_learning/logistic_regression
+          - file: machine_learning_algorithms/supervised_learning/logistic_regression/logistic_regression
+            sections: 
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/theoretical_foundations
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/types
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/model_training
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/model_evaluation
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/assumptions
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/assumption_violations
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/practical_considerations
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/implementation
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/advanced_topics
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/case_studies
+              - file: machine_learning_algorithms/supervised_learning/logistic_regression/conclusion
           - file: machine_learning_algorithms/supervised_learning/decision_trees_and_random_forests
           - file: machine_learning_algorithms/supervised_learning/support_vector_machines
           - file: machine_learning_algorithms/supervised_learning/k_nearest_neighbors
