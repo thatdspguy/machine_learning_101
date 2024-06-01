@@ -3,3 +3,5 @@ jupyter-book
 matplotlib
 numpy
 scipy
+scikit-learn
+pandas
