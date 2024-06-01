@@ -24,7 +24,19 @@ chapters:
     sections:
       - file: machine_learning_algorithms/supervised_learning/supervised_learning
         sections:
-          - file: machine_learning_algorithms/supervised_learning/linear_regression
+          - file: machine_learning_algorithms/supervised_learning/linear_regression/linear_regression
+            sections: 
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/theoretical_foundations
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/types
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/model_training
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/model_evaluation
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/assumptions
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/assumption_violations
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/practical_considerations
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/implementation
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/advanced_topics
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/case_studies
+              - file: machine_learning_algorithms/supervised_learning/linear_regression/conclusion
           - file: machine_learning_algorithms/supervised_learning/logistic_regression
           - file: machine_learning_algorithms/supervised_learning/decision_trees_and_random_forests
           - file: machine_learning_algorithms/supervised_learning/support_vector_machines
