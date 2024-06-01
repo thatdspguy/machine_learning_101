@@ -1,6 +1,6 @@
-### Types of Linear Regression
+# Types of Linear Regression
 
-#### Simple Linear Regression
+## Simple Linear Regression
 
 Simple linear regression models the relationship between a single independent variable and a dependent variable. It assumes that the relationship between the two variables can be described by a straight line.
 
@@ -9,7 +9,7 @@ Simple linear regression models the relationship between a single independent va
 - The residuals (differences between observed and predicted values) are normally distributed.
 - The residuals have constant variance ([homoscedasticity](https://en.wikipedia.org/wiki/Homoscedasticity_and_heteroscedasticity)).
 
-#### Multiple Linear Regression
+## Multiple Linear Regression
 
 Multiple linear regression extends simple linear regression by modeling the relationship between two or more independent variables and a dependent variable. It allows for more complex relationships and interactions among variables.
 

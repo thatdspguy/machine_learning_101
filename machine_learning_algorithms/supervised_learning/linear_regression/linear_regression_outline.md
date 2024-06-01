@@ -1,10 +1,10 @@
-## Introduction
+# Introduction
 - Overview of Linear Regression
   - Definition and Purpose
   - Historical Background
   - Applications of Linear Regression
 
-## Theoretical Foundations
+# Theoretical Foundations
 - Basic Concepts
   - Dependent and Independent Variables
   - Linear Relationship
@@ -13,7 +13,7 @@
   - Slope and Intercept
   - Hypothesis Function
 
-## Types of Linear Regression
+# Types of Linear Regression
 - Simple Linear Regression
   - Definition
   - Assumptions
@@ -21,7 +21,7 @@
   - Definition
   - Assumptions
 
-## Model Training
+# Model Training
 - Cost Function
   - Mean Squared Error (MSE)
   - Mean Absolute Error (MAE)
@@ -29,7 +29,7 @@
   - Gradient Descent
   - Normal Equation
 
-## Evaluating the Model
+# Evaluating the Model
 - Performance Metrics
   - R-squared
   - Adjusted R-squared
@@ -39,14 +39,14 @@
   - K-Fold Cross-Validation
   - Leave-One-Out Cross-Validation
 
-## Assumptions of Linear Regression
+# Assumptions of Linear Regression
 - Linearity
 - Independence
 - Homoscedasticity
 - Normality
 - No Multicollinearity
 
-## Dealing with Violations of Assumptions
+# Dealing with Violations of Assumptions
 - Transformations
   - Log Transformation
   - Polynomial Features
@@ -54,7 +54,7 @@
   - Ridge Regression
   - Lasso Regression
 
-## Practical Considerations
+# Practical Considerations
 - Feature Selection
   - Forward Selection
   - Backward Elimination
@@ -66,7 +66,7 @@
   - Standardization
   - Normalization
 
-## Implementation
+# Implementation
 - Implementing Linear Regression in Python
   - Using Scikit-Learn
   - Custom Implementation
@@ -74,7 +74,7 @@
   - Predicting House Prices
   - Forecasting Sales
 
-## Advanced Topics
+# Advanced Topics
 - Regularization Methods
   - Ridge Regression
   - Lasso Regression
@@ -82,18 +82,13 @@
 - Interaction Terms
 - Polynomial Regression
 
-## Case Studies
+# Case Studies
 - Real-World Examples
   - Healthcare
   - Finance
   - Marketing
 
-## Conclusion
+# Conclusion
 - Summary of Key Points
 - Future Directions
 - Further Reading
-
-## References
-- Books
-- Research Papers
-- Online Resources

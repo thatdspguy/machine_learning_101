@@ -1,10 +1,10 @@
-## Model Training
+# Model Training
 
-### Cost Function
+## Cost Function
 
 In linear regression, the cost function measures how well the model's predictions match the actual data. It quantifies the error between predicted values and actual values, guiding the optimization process to find the best-fitting line.
 
-#### Mean Squared Error (MSE)
+### Mean Squared Error (MSE)
 
 Mean Squared Error (MSE) is the most commonly used cost function for linear regression. It calculates the average of the squared differences between the predicted values ($\hat{y}$) and the actual values ($y$):
 
@@ -17,7 +17,7 @@ where:
 
 MSE is sensitive to outliers because it squares the errors, giving more weight to larger errors. Minimizing the MSE helps the model achieve a closer fit to the data.
 
-#### Mean Absolute Error (MAE)
+### Mean Absolute Error (MAE)
 
 Mean Absolute Error (MAE) is another cost function that measures the average of the absolute differences between the predicted values ($\hat{y}$) and the actual values ($y$):
 
@@ -25,11 +25,11 @@ $$ \text{MAE} = \frac{1}{m} \sum_{i=1}^{m} |\hat{y}_i - y_i| $$
 
 MAE is less sensitive to outliers compared to MSE because it does not square the errors. However, it may result in a less smooth optimization landscape, making it less preferred for gradient-based optimization methods.
 
-### Optimization Techniques
+## Optimization Techniques
 
 The goal of optimization in linear regression is to find the parameters ($\theta$) that minimize the cost function. Two common optimization techniques are Gradient Descent and the Normal Equation.
 
-#### Gradient Descent
+### Gradient Descent
 
 Gradient Descent is an iterative optimization algorithm used to minimize the cost function. It updates the model parameters in the direction of the negative gradient of the cost function. The update rule for Gradient Descent is:
 
@@ -51,7 +51,7 @@ Gradient Descent can be performed using different variants:
 - **Stochastic Gradient Descent (SGD):** Uses a single data point to compute the gradients and update the parameters, making it faster but noisier.
 - **Mini-batch Gradient Descent:** Uses a small batch of data points to compute the gradients and update the parameters, balancing the speed and noise trade-off.
 
-#### Normal Equation
+### Normal Equation
 
 The Normal Equation is a closed-form solution for finding the optimal parameters in linear regression without requiring iterative optimization. It directly computes the parameters that minimize the cost function. The Normal Equation for linear regression is:
 
@@ -63,6 +63,6 @@ where:
 
 The Normal Equation is computationally efficient for small to medium-sized datasets but becomes impractical for very large datasets due to the matrix inversion step, which has a time complexity of $O(n^3)$.
 
-### Summary
+## Summary
 
 Both Gradient Descent and the Normal Equation have their advantages and limitations. Gradient Descent is versatile and scalable to large datasets but requires careful tuning of the learning rate and can be slow to converge. The Normal Equation provides a direct solution but is limited by its computational complexity for large datasets. Understanding these optimization techniques is crucial for effectively training linear regression models and achieving accurate predictions.
