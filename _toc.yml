@@ -14,6 +14,8 @@ chapters:
         sections:
           - file: mathematical_foundations/calculus/derivatives
           - file: mathematical_foundations/calculus/integrals
+          - file: mathematical_foundations/calculus/gradients
+          - file: mathematical_foundations/calculus/hessian
       - file: mathematical_foundations/probability_and_statistics/probability_and_statistics
         sections:
           - file: mathematical_foundations/probability_and_statistics/probability_distributions
