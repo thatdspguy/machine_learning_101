@@ -35,7 +35,7 @@ where:
 
 ### Hypothesis Function
 
-In the context of linear regression, the hypothesis function represents the model's prediction. For a simple linear regression with one indeWpendent variable, the hypothesis function is:
+In the context of linear regression, the hypothesis function represents the model's prediction. For a simple linear regression with one independent variable, the hypothesis function is:
 
 $$\hat{y} = \theta_0 + \theta_1 x$$
 
