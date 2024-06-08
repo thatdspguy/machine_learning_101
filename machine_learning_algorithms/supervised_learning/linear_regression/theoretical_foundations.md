@@ -24,6 +24,10 @@ where:
 - $m$ is the slope of the line, and
 - $b$ is the bias (y-intercept).
 
+<br> 
+
+![Slope-Intercept Plot](slope_intercept_plot.png)
+
 ### Slope and Bias
 
 - **Slope ($m$)**: The slope of the line indicates the rate of change of the dependent variable with respect to the independent variable. A positive slope means that as the independent variable increases, the dependent variable also increases. Conversely, a negative slope means that as the independent variable increases, the dependent variable decreases.
