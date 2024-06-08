@@ -18,7 +18,7 @@ Semi-supervised learning falls between supervised and unsupervised learning. It 
 
 Reinforcement learning is a type of machine learning where an agent learns to make decisions by taking actions in an environment to maximize some notion of cumulative reward. The agent interacts with the environment, receives feedback in the form of rewards or penalties, and adjusts its actions accordingly. Unlike supervised learning, reinforcement learning does not require labeled input/output pairs and learns through trial and error. Key algorithms include Q-learning and deep Q-networks (DQN). Applications include game playing (e.g., AlphaGo), robotics, and autonomous driving.
 
-# Moving Foreward
+## Moving Foreward
 
 Throughout this book we will delve deeper into each of these types of machine learning, examining the underlying algorithms, their applications, and how to implement them in practice. Additionally, we will cover essential aspects such as data preprocessing, model evaluation, and the ethical considerations of using machine learning.
 
