@@ -6,7 +6,7 @@ Evaluating the performance of a linear regression model is crucial to understand
 
 ### R-squared
 
-R-squared, also known as the coefficient of determination, measures the proportion of the variance in the dependent variable that is predictable from the independent variable(s). It is given by:
+R-squared, also known as the *coefficient of determination*, measures the proportion of the variance in the dependent variable that is predictable from the independent variable(s). It is given by:
 
 $$ R^2 = 1 - \frac{SS_{\text{res}}}{SS_{\text{tot}}} $$
 
@@ -27,6 +27,10 @@ where:
 - $k$ is the number of predictors.
 
 Adjusted R-squared can be lower than R-squared and provides a more accurate measure of model fit when multiple predictors are involved.
+
+<br>
+
+![Adjusted R-Squared Animation](adjusted_r_squared_animation.gif)
 
 ### Mean Squared Error (MSE)
 
