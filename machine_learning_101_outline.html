@@ -1,0 +1,874 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Machine Learning 101 Topic Outline &#8212; Machine Learning 101</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'machine_learning_101_outline';</script>
+    <link rel="canonical" href="https://thatdspguy.com/machine_learning_101_outline.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="machine_learning_101_intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/tdg_logo.png" class="logo__image only-light" alt="Machine Learning 101 - Home"/>
+    <script>document.write(`<img src="_static/tdg_logo.png" class="logo__image only-dark" alt="Machine Learning 101 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="machine_learning_101_intro.html">
+                    Introduction to Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="mathematical_foundations/mathematical_foundations.html">Mathematical Foundations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="mathematical_foundations/linear_algebra/linear_algebra.html">Linear Algebra</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="mathematical_foundations/linear_algebra/vectors_and_matrices.html">Vectors and Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematical_foundations/linear_algebra/eigenvalues_and_eigenvectors.html">Eigenvalues and Eigenvectors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="mathematical_foundations/calculus/calculus.html">Calculus</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="mathematical_foundations/calculus/derivatives.html">Derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematical_foundations/calculus/integrals.html">Integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematical_foundations/calculus/gradients.html">Gradients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematical_foundations/calculus/hessian.html">Hessian</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="mathematical_foundations/probability_and_statistics/probability_and_statistics.html">Probability and Statistics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="mathematical_foundations/probability_and_statistics/probability_distributions.html">Probability Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematical_foundations/probability_and_statistics/bayes_theorem.html">Bayes’ Theorem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematical_foundations/probability_and_statistics/descriptive_statistics.html">Descriptive Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mathematical_foundations/probability_and_statistics/inferential_statistics.html">Inferential Statistics</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="machine_learning_algorithms/machine_learning_algorithms.html">Machine Learning Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/linear_regression.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/theoretical_foundations.html">Theoretical Foundations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/types.html">Types of Linear Regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/model_training.html">Model Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/model_evaluation.html">Evaluating the Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/assumptions.html">Assumptions of Linear Regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/assumption_violations.html">Dealing with Violations of Assumptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/practical_considerations.html">Practical Considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/implementation.html">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/advanced_topics.html">Advanced Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/case_studies.html">Case Studies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/linear_regression/conclusion.html">Conclusion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/logistic_regression.html">Logistic Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/theoretical_foundations.html">Theoretical Foundations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/types.html">Types of Logistic Regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/model_training.html">Model Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/model_evaluation.html">Model Evaluation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/assumptions.html">Assumptions of Logistic Regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/assumption_violations.html">Dealing with Violations of Assumptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/practical_considerations.html">Practical Considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/implementation.html">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/advanced_topics.html">Advanced Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/case_studies.html">Case Studies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/logistic_regression/conclusion.html">Conclusion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/decision_trees_and_random_forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/support_vector_machines.html">Support Vector Machines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/k_nearest_neighbors.html">K-Nearest Neighbors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine_learning_algorithms/supervised_learning/neural_networks_and_deep_learning.html">Neural Networks and Deep Learning</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/clustering/clustering.html">Clustering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/clustering/k_means.html">K-Means</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/clustering/hierarchical.html">Hierarchical</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/clustering/dbscan.html">DBSCAN</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/dimensionality_reduction/dimensionality_reduction.html">Dimensionality Reduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/dimensionality_reduction/pca.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/dimensionality_reduction/t_sne.html">t-SNE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/association_rules/association_rules.html">Association Rules</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/association_rules/apriori.html">Apriori</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine_learning_algorithms/unsupervised_learning/association_rules/eclat.html">Eclat</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="machine_learning_algorithms/reinforcement_learning/reinforcement_learning.html">Reinforcement Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="machine_learning_algorithms/reinforcement_learning/markov_decision_processes.html">Markov Decision Processes (MDP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine_learning_algorithms/reinforcement_learning/q_learning.html">Q-Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine_learning_algorithms/reinforcement_learning/deep_q_networks.html">Deep Q-Networks (DQN)</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="model_evaluation_and_validation/model_evaluation_and_validation.html">Model Evaluation and Validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="model_evaluation_and_validation/train_test_split.html">Train/Test Split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_evaluation_and_validation/cross_validation.html">Cross-Validation</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="model_evaluation_and_validation/evaluation_metrics/evaluation_metrics.html">Evaluation Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="model_evaluation_and_validation/evaluation_metrics/accuracy.html">Accuracy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="model_evaluation_and_validation/evaluation_metrics/precision.html">Precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="model_evaluation_and_validation/evaluation_metrics/recall.html">Recall</a></li>
+<li class="toctree-l3"><a class="reference internal" href="model_evaluation_and_validation/evaluation_metrics/f1_score.html">F1 Score</a></li>
+<li class="toctree-l3"><a class="reference internal" href="model_evaluation_and_validation/evaluation_metrics/roc_auc.html">ROC-AUC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="model_evaluation_and_validation/evaluation_metrics/confusion_matrix.html">Confusion Matrix</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="feature_engineering/feature_engineering.html">Feature Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="feature_engineering/feature_selection.html">Feature Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_engineering/feature_scaling_and_normalization.html">Feature Scaling and Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_engineering/handling_missing_values.html">Handling Missing Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="feature_engineering/encoding_categorical_variables.html">Encoding Categorical Variables</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data_preprocessing/data_preprocessing.html">Data Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_preprocessing/data_cleaning.html">Data Cleaning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_preprocessing/data_transformation.html">Data Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_preprocessing/data_augmentation.html">Data Augmentation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="overfitting_and_underfitting/overfitting_and_underfitting.html">Overfitting and Underfitting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="overfitting_and_underfitting/bias_variance_tradeoff.html">Bias-Variance Tradeoff</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="overfitting_and_underfitting/regularization_techniques/regularization_techniques.html">Regularization Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="overfitting_and_underfitting/regularization_techniques/l1.html">L1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overfitting_and_underfitting/regularization_techniques/l2.html">L2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overfitting_and_underfitting/regularization_techniques/dropout.html">Dropout</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="overfitting_and_underfitting/cross_validation.html">Cross-Validation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="neural_networks_and_deep_learning/neural_networks_and_deep_learning.html">Neural Networks and Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="neural_networks_and_deep_learning/perceptrons.html">Perceptrons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neural_networks_and_deep_learning/multi_layer_perceptrons.html">Multi-Layer Perceptrons (MLP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neural_networks_and_deep_learning/backpropagation.html">Backpropagation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neural_networks_and_deep_learning/convolutional_neural_networks.html">Convolutional Neural Networks (CNN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neural_networks_and_deep_learning/recurrent_neural_networks.html">Recurrent Neural Networks (RNN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neural_networks_and_deep_learning/transfer_learning.html">Transfer Learning</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="advanced_topics/advanced_topics.html">Advanced Topics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="advanced_topics/natural_language_processing/natural_language_processing.html">Natural Language Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced_topics/natural_language_processing/text_preprocessing.html">Text Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced_topics/natural_language_processing/word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced_topics/natural_language_processing/sequence_models.html">Sequence Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="advanced_topics/computer_vision/computer_vision.html">Computer Vision</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced_topics/computer_vision/image_preprocessing.html">Image Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced_topics/computer_vision/object_detection.html">Object Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced_topics/computer_vision/generative_models.html">Generative Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="advanced_topics/time_series_analysis/time_series_analysis.html">Time Series Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="advanced_topics/time_series_analysis/time_series_decomposition.html">Time Series Decomposition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced_topics/time_series_analysis/arima.html">ARIMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced_topics/time_series_analysis/lstm_networks.html">LSTM Networks</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tools_and_libraries/tools_and_libraries.html">Tools and Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools_and_libraries/programming_languages.html">Programming Languages</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="tools_and_libraries/libraries_and_frameworks/libraries_and_frameworks.html">Libraries and Frameworks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools_and_libraries/libraries_and_frameworks/scikit_learn.html">Scikit-Learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools_and_libraries/libraries_and_frameworks/tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools_and_libraries/libraries_and_frameworks/keras.html">Keras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools_and_libraries/libraries_and_frameworks/pytorch.html">PyTorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools_and_libraries/libraries_and_frameworks/pandas.html">Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools_and_libraries/libraries_and_frameworks/numpy.html">NumPy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="tools_and_libraries/jupyter_notebooks.html">Jupyter Notebooks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="projects_and_case_studies/projects_and_case_studies.html">Projects and Case Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ethics_and_best_practices/ethics_and_best_practices.html">Ethics and Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources_for_further_learning/resources_for_further_learning.html">Resources for Further Learning</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/thatdspguy/machine_learning_101" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/thatdspguy/machine_learning_101/issues/new?title=Issue%20on%20page%20%2Fmachine_learning_101_outline.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/machine_learning_101_outline.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Machine Learning 101 Topic Outline</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-machine-learning">1. Introduction to Machine Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-foundations">2. Mathematical Foundations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-machine-learning-algorithms">3. Key Machine Learning Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evaluation-and-validation">4. Model Evaluation and Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">5. Feature Engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">6. Data Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting">7. Overfitting and Underfitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-neural-networks-and-deep-learning">8. Introduction to Neural Networks and Deep Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-topics">9. Advanced Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-and-libraries">10. Tools and Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-projects-and-case-studies">11. Practical Projects and Case Studies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ethics-and-best-practices">12. Ethics and Best Practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-for-further-learning">13. Resources for Further Learning</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="machine-learning-101-topic-outline">
+<h1>Machine Learning 101 Topic Outline<a class="headerlink" href="#machine-learning-101-topic-outline" title="Link to this heading">#</a></h1>
+<section id="introduction-to-machine-learning">
+<h2>1. Introduction to Machine Learning<a class="headerlink" href="#introduction-to-machine-learning" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>What is Machine Learning?</p></li>
+<li><p>Types of Machine Learning: Supervised, Unsupervised, Semi-supervised, and Reinforcement Learning</p></li>
+<li><p>Applications of Machine Learning</p></li>
+</ul>
+</section>
+<section id="mathematical-foundations">
+<h2>2. Mathematical Foundations<a class="headerlink" href="#mathematical-foundations" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Linear Algebra</p>
+<ul>
+<li><p>Vectors and Matrices</p></li>
+<li><p>Eigenvalues and Eigenvectors</p></li>
+</ul>
+</li>
+<li><p>Calculus</p>
+<ul>
+<li><p>Derivatives and Integrals</p></li>
+<li><p>Gradient and Hessian</p></li>
+</ul>
+</li>
+<li><p>Probability and Statistics</p>
+<ul>
+<li><p>Probability Distributions</p></li>
+<li><p>Bayes’ Theorem</p></li>
+<li><p>Descriptive Statistics</p></li>
+<li><p>Inferential Statistics</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="key-machine-learning-algorithms">
+<h2>3. Key Machine Learning Algorithms<a class="headerlink" href="#key-machine-learning-algorithms" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Supervised Learning</p>
+<ul>
+<li><p>Linear Regression</p></li>
+<li><p>Logistic Regression</p></li>
+<li><p>Decision Trees and Random Forests</p></li>
+<li><p>Support Vector Machines (SVM)</p></li>
+<li><p>k-Nearest Neighbors (k-NN)</p></li>
+<li><p>Neural Networks and Deep Learning</p></li>
+</ul>
+</li>
+<li><p>Unsupervised Learning</p>
+<ul>
+<li><p>Clustering: k-Means, Hierarchical, DBSCAN</p></li>
+<li><p>Dimensionality Reduction: PCA, t-SNE</p></li>
+<li><p>Association Rules: Apriori, Eclat</p></li>
+</ul>
+</li>
+<li><p>Reinforcement Learning</p>
+<ul>
+<li><p>Markov Decision Processes (MDP)</p></li>
+<li><p>Q-Learning</p></li>
+<li><p>Deep Q-Networks (DQN)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="model-evaluation-and-validation">
+<h2>4. Model Evaluation and Validation<a class="headerlink" href="#model-evaluation-and-validation" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Train/Test Split</p></li>
+<li><p>Cross-Validation</p></li>
+<li><p>Evaluation Metrics</p>
+<ul>
+<li><p>Accuracy, Precision, Recall, F1-Score</p></li>
+<li><p>ROC-AUC</p></li>
+<li><p>Confusion Matrix</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="feature-engineering">
+<h2>5. Feature Engineering<a class="headerlink" href="#feature-engineering" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Feature Selection</p></li>
+<li><p>Feature Scaling and Normalization</p></li>
+<li><p>Handling Missing Values</p></li>
+<li><p>Encoding Categorical Variables</p></li>
+</ul>
+</section>
+<section id="data-preprocessing">
+<h2>6. Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Data Cleaning</p></li>
+<li><p>Data Transformation</p></li>
+<li><p>Data Augmentation</p></li>
+</ul>
+</section>
+<section id="overfitting-and-underfitting">
+<h2>7. Overfitting and Underfitting<a class="headerlink" href="#overfitting-and-underfitting" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bias-Variance Tradeoff</p></li>
+<li><p>Regularization Techniques: L1, L2, Dropout</p></li>
+<li><p>Cross-Validation</p></li>
+</ul>
+</section>
+<section id="introduction-to-neural-networks-and-deep-learning">
+<h2>8. Introduction to Neural Networks and Deep Learning<a class="headerlink" href="#introduction-to-neural-networks-and-deep-learning" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Perceptrons</p></li>
+<li><p>Multi-Layer Perceptrons (MLP)</p></li>
+<li><p>Backpropagation</p></li>
+<li><p>Convolutional Neural Networks (CNN)</p></li>
+<li><p>Recurrent Neural Networks (RNN)</p></li>
+<li><p>Transfer Learning</p></li>
+</ul>
+</section>
+<section id="advanced-topics">
+<h2>9. Advanced Topics<a class="headerlink" href="#advanced-topics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Natural Language Processing (NLP)</p>
+<ul>
+<li><p>Text Preprocessing</p></li>
+<li><p>Word Embeddings</p></li>
+<li><p>Sequence Models</p></li>
+</ul>
+</li>
+<li><p>Computer Vision</p>
+<ul>
+<li><p>Image Preprocessing</p></li>
+<li><p>Object Detection</p></li>
+<li><p>Generative Models</p></li>
+</ul>
+</li>
+<li><p>Time Series Analysis</p>
+<ul>
+<li><p>Time Series Decomposition</p></li>
+<li><p>ARIMA</p></li>
+<li><p>LSTM Networks</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="tools-and-libraries">
+<h2>10. Tools and Libraries<a class="headerlink" href="#tools-and-libraries" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Programming Languages: Python, R</p></li>
+<li><p>Libraries and Frameworks</p>
+<ul>
+<li><p>Scikit-Learn</p></li>
+<li><p>TensorFlow</p></li>
+<li><p>Keras</p></li>
+<li><p>PyTorch</p></li>
+<li><p>Pandas and NumPy</p></li>
+</ul>
+</li>
+<li><p>Jupyter Notebooks</p></li>
+</ul>
+</section>
+<section id="practical-projects-and-case-studies">
+<h2>11. Practical Projects and Case Studies<a class="headerlink" href="#practical-projects-and-case-studies" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Implementing Basic Algorithms from Scratch</p></li>
+<li><p>Kaggle Competitions</p></li>
+<li><p>Real-world Case Studies</p>
+<ul>
+<li><p>Predictive Analytics</p></li>
+<li><p>Image Classification</p></li>
+<li><p>Sentiment Analysis</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ethics-and-best-practices">
+<h2>12. Ethics and Best Practices<a class="headerlink" href="#ethics-and-best-practices" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Ethical Considerations in Machine Learning</p></li>
+<li><p>Data Privacy</p></li>
+<li><p>Fairness and Bias in ML Models</p></li>
+<li><p>Explainability and Interpretability</p></li>
+</ul>
+</section>
+<section id="resources-for-further-learning">
+<h2>13. Resources for Further Learning<a class="headerlink" href="#resources-for-further-learning" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Online Courses (Coursera, edX, Udacity)</p></li>
+<li><p>Books (e.g., “Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow” by Aurélien Géron)</p></li>
+<li><p>Research Papers and Journals</p></li>
+<li><p>Communities and Forums (Kaggle, Stack Overflow, Reddit)</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-machine-learning">1. Introduction to Machine Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-foundations">2. Mathematical Foundations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-machine-learning-algorithms">3. Key Machine Learning Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evaluation-and-validation">4. Model Evaluation and Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">5. Feature Engineering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing">6. Data Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overfitting-and-underfitting">7. Overfitting and Underfitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-neural-networks-and-deep-learning">8. Introduction to Neural Networks and Deep Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-topics">9. Advanced Topics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-and-libraries">10. Tools and Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-projects-and-case-studies">11. Practical Projects and Case Studies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ethics-and-best-practices">12. Ethics and Best Practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-for-further-learning">13. Resources for Further Learning</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Keaton Scheible
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

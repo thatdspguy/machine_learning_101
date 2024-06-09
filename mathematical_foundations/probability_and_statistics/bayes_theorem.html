@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bayes’ Theorem &#8212; Machine Learning 101</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mathematical_foundations/probability_and_statistics/bayes_theorem';</script>
+    <link rel="canonical" href="https://thatdspguy.com/mathematical_foundations/probability_and_statistics/bayes_theorem.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Descriptive Statistics" href="descriptive_statistics.html" />
+    <link rel="prev" title="Probability Distributions" href="probability_distributions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../machine_learning_101_intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tdg_logo.png" class="logo__image only-light" alt="Machine Learning 101 - Home"/>
+    <script>document.write(`<img src="../../_static/tdg_logo.png" class="logo__image only-dark" alt="Machine Learning 101 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../machine_learning_101_intro.html">
+                    Introduction to Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../mathematical_foundations.html">Mathematical Foundations</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../linear_algebra/linear_algebra.html">Linear Algebra</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linear_algebra/vectors_and_matrices.html">Vectors and Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linear_algebra/eigenvalues_and_eigenvectors.html">Eigenvalues and Eigenvectors</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../calculus/calculus.html">Calculus</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../calculus/derivatives.html">Derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../calculus/integrals.html">Integrals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../calculus/gradients.html">Gradients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../calculus/hessian.html">Hessian</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="probability_and_statistics.html">Probability and Statistics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="probability_distributions.html">Probability Distributions</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Bayes’ Theorem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="descriptive_statistics.html">Descriptive Statistics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inferential_statistics.html">Inferential Statistics</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../machine_learning_algorithms/machine_learning_algorithms.html">Machine Learning Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/supervised_learning.html">Supervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/linear_regression.html">Linear Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/theoretical_foundations.html">Theoretical Foundations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/types.html">Types of Linear Regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/model_training.html">Model Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/model_evaluation.html">Evaluating the Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/assumptions.html">Assumptions of Linear Regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/assumption_violations.html">Dealing with Violations of Assumptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/practical_considerations.html">Practical Considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/implementation.html">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/advanced_topics.html">Advanced Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/case_studies.html">Case Studies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/linear_regression/conclusion.html">Conclusion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/logistic_regression.html">Logistic Regression</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/theoretical_foundations.html">Theoretical Foundations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/types.html">Types of Logistic Regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/model_training.html">Model Training</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/model_evaluation.html">Model Evaluation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/assumptions.html">Assumptions of Logistic Regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/assumption_violations.html">Dealing with Violations of Assumptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/practical_considerations.html">Practical Considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/implementation.html">Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/advanced_topics.html">Advanced Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/case_studies.html">Case Studies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/logistic_regression/conclusion.html">Conclusion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/decision_trees_and_random_forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/support_vector_machines.html">Support Vector Machines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/k_nearest_neighbors.html">K-Nearest Neighbors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../machine_learning_algorithms/supervised_learning/neural_networks_and_deep_learning.html">Neural Networks and Deep Learning</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/unsupervised_learning.html">Unsupervised Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/clustering/clustering.html">Clustering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/clustering/k_means.html">K-Means</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/clustering/hierarchical.html">Hierarchical</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/clustering/dbscan.html">DBSCAN</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/dimensionality_reduction/dimensionality_reduction.html">Dimensionality Reduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/dimensionality_reduction/pca.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/dimensionality_reduction/t_sne.html">t-SNE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/association_rules/association_rules.html">Association Rules</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/association_rules/apriori.html">Apriori</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../machine_learning_algorithms/unsupervised_learning/association_rules/eclat.html">Eclat</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../machine_learning_algorithms/reinforcement_learning/reinforcement_learning.html">Reinforcement Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../machine_learning_algorithms/reinforcement_learning/markov_decision_processes.html">Markov Decision Processes (MDP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../machine_learning_algorithms/reinforcement_learning/q_learning.html">Q-Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../machine_learning_algorithms/reinforcement_learning/deep_q_networks.html">Deep Q-Networks (DQN)</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../model_evaluation_and_validation/model_evaluation_and_validation.html">Model Evaluation and Validation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../model_evaluation_and_validation/train_test_split.html">Train/Test Split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../model_evaluation_and_validation/cross_validation.html">Cross-Validation</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../model_evaluation_and_validation/evaluation_metrics/evaluation_metrics.html">Evaluation Metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../model_evaluation_and_validation/evaluation_metrics/accuracy.html">Accuracy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../model_evaluation_and_validation/evaluation_metrics/precision.html">Precision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../model_evaluation_and_validation/evaluation_metrics/recall.html">Recall</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../model_evaluation_and_validation/evaluation_metrics/f1_score.html">F1 Score</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../model_evaluation_and_validation/evaluation_metrics/roc_auc.html">ROC-AUC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../model_evaluation_and_validation/evaluation_metrics/confusion_matrix.html">Confusion Matrix</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../feature_engineering/feature_engineering.html">Feature Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_engineering/feature_selection.html">Feature Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_engineering/feature_scaling_and_normalization.html">Feature Scaling and Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_engineering/handling_missing_values.html">Handling Missing Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_engineering/encoding_categorical_variables.html">Encoding Categorical Variables</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../data_preprocessing/data_preprocessing.html">Data Preprocessing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_preprocessing/data_cleaning.html">Data Cleaning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_preprocessing/data_transformation.html">Data Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_preprocessing/data_augmentation.html">Data Augmentation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../overfitting_and_underfitting/overfitting_and_underfitting.html">Overfitting and Underfitting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overfitting_and_underfitting/bias_variance_tradeoff.html">Bias-Variance Tradeoff</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../overfitting_and_underfitting/regularization_techniques/regularization_techniques.html">Regularization Techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../overfitting_and_underfitting/regularization_techniques/l1.html">L1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overfitting_and_underfitting/regularization_techniques/l2.html">L2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overfitting_and_underfitting/regularization_techniques/dropout.html">Dropout</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../overfitting_and_underfitting/cross_validation.html">Cross-Validation</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../neural_networks_and_deep_learning/neural_networks_and_deep_learning.html">Neural Networks and Deep Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../neural_networks_and_deep_learning/perceptrons.html">Perceptrons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../neural_networks_and_deep_learning/multi_layer_perceptrons.html">Multi-Layer Perceptrons (MLP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../neural_networks_and_deep_learning/backpropagation.html">Backpropagation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../neural_networks_and_deep_learning/convolutional_neural_networks.html">Convolutional Neural Networks (CNN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../neural_networks_and_deep_learning/recurrent_neural_networks.html">Recurrent Neural Networks (RNN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../neural_networks_and_deep_learning/transfer_learning.html">Transfer Learning</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../advanced_topics/advanced_topics.html">Advanced Topics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../advanced_topics/natural_language_processing/natural_language_processing.html">Natural Language Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../advanced_topics/natural_language_processing/text_preprocessing.html">Text Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../advanced_topics/natural_language_processing/word_embeddings.html">Word Embeddings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../advanced_topics/natural_language_processing/sequence_models.html">Sequence Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../advanced_topics/computer_vision/computer_vision.html">Computer Vision</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../advanced_topics/computer_vision/image_preprocessing.html">Image Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../advanced_topics/computer_vision/object_detection.html">Object Detection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../advanced_topics/computer_vision/generative_models.html">Generative Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../advanced_topics/time_series_analysis/time_series_analysis.html">Time Series Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../advanced_topics/time_series_analysis/time_series_decomposition.html">Time Series Decomposition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../advanced_topics/time_series_analysis/arima.html">ARIMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../advanced_topics/time_series_analysis/lstm_networks.html">LSTM Networks</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tools_and_libraries/tools_and_libraries.html">Tools and Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tools_and_libraries/programming_languages.html">Programming Languages</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tools_and_libraries/libraries_and_frameworks/libraries_and_frameworks.html">Libraries and Frameworks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tools_and_libraries/libraries_and_frameworks/scikit_learn.html">Scikit-Learn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools_and_libraries/libraries_and_frameworks/tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools_and_libraries/libraries_and_frameworks/keras.html">Keras</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools_and_libraries/libraries_and_frameworks/pytorch.html">PyTorch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools_and_libraries/libraries_and_frameworks/pandas.html">Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools_and_libraries/libraries_and_frameworks/numpy.html">NumPy</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools_and_libraries/jupyter_notebooks.html">Jupyter Notebooks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../projects_and_case_studies/projects_and_case_studies.html">Projects and Case Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ethics_and_best_practices/ethics_and_best_practices.html">Ethics and Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources_for_further_learning/resources_for_further_learning.html">Resources for Further Learning</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/thatdspguy/machine_learning_101" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/thatdspguy/machine_learning_101/issues/new?title=Issue%20on%20page%20%2Fmathematical_foundations/probability_and_statistics/bayes_theorem.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/mathematical_foundations/probability_and_statistics/bayes_theorem.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bayes’ Theorem</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition">Intuition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-medical-diagnosis">Example: Medical Diagnosis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-in-machine-learning">Applications in Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-naive-bayes-in-python">Example: Naive Bayes in Python</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-networks">Bayesian Networks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bayes-theorem">
+<h1>Bayes’ Theorem<a class="headerlink" href="#bayes-theorem" title="Link to this heading">#</a></h1>
+<p>Bayes’ Theorem is a fundamental concept in probability theory and statistics that describes the relationship between conditional probabilities. It provides a mathematical framework for updating the probability of a hypothesis based on new evidence and is essential for many machine learning algorithms and inferential statistics.</p>
+<section id="definition">
+<h2>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h2>
+<p>Bayes’ Theorem is expressed as:</p>
+<div class="math notranslate nohighlight">
+\[ P(A|B) = \frac{P(B|A)P(A)}{P(B)} \]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(A|B)\)</span> is the posterior probability, the probability of hypothesis <span class="math notranslate nohighlight">\(A\)</span> given the evidence <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(B|A)\)</span> is the likelihood, the probability of evidence <span class="math notranslate nohighlight">\(B\)</span> given that hypothesis <span class="math notranslate nohighlight">\(A\)</span> is true.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(A)\)</span> is the prior probability, the initial probability of hypothesis <span class="math notranslate nohighlight">\(A\)</span> before observing the evidence <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(B)\)</span> is the marginal probability, the total probability of the evidence <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+</ul>
+</section>
+<section id="intuition">
+<h2>Intuition<a class="headerlink" href="#intuition" title="Link to this heading">#</a></h2>
+<p>Bayes’ Theorem allows us to update our beliefs about the probability of a hypothesis based on new evidence. It combines the prior probability with the likelihood of the new evidence to produce the posterior probability.</p>
+<section id="example-medical-diagnosis">
+<h3>Example: Medical Diagnosis<a class="headerlink" href="#example-medical-diagnosis" title="Link to this heading">#</a></h3>
+<p>Suppose a patient undergoes a test for a rare disease. The test is 99% accurate, meaning it correctly identifies 99% of diseased and 99% of healthy individuals. The disease affects 1 in 10,000 people. We want to find the probability that the patient has the disease given a positive test result.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(\text{Disease}) = 0.0001\)</span> (prior probability)</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(\text{Positive Test}|\text{Disease}) = 0.99\)</span> (likelihood)</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(\text{Positive Test}|\text{No Disease}) = 0.01\)</span> (false positive rate)</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(\text{No Disease}) = 1 - P(\text{Disease}) = 0.9999\)</span></p></li>
+</ul>
+<p>We need to calculate <span class="math notranslate nohighlight">\(P(\text{Positive Test})\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ P(\text{Positive Test}) = P(\text{Positive Test}|\text{Disease})P(\text{Disease}) + P(\text{Positive Test}|\text{No Disease})P(\text{No Disease}) \]</div>
+<div class="math notranslate nohighlight">
+\[ = (0.99 \times 0.0001) + (0.01 \times 0.9999) \]</div>
+<div class="math notranslate nohighlight">
+\[ = 0.000099 + 0.009999 \]</div>
+<div class="math notranslate nohighlight">
+\[ = 0.010098 \]</div>
+<p>Now, we can use Bayes’ Theorem to find the posterior probability:</p>
+<div class="math notranslate nohighlight">
+\[ P(\text{Disease}|\text{Positive Test}) = \frac{P(\text{Positive Test}|\text{Disease})P(\text{Disease})}{P(\text{Positive Test})} \]</div>
+<div class="math notranslate nohighlight">
+\[ = \frac{0.99 \times 0.0001}{0.010098} \]</div>
+<div class="math notranslate nohighlight">
+\[ = \frac{0.000099}{0.010098} \]</div>
+<div class="math notranslate nohighlight">
+\[ \approx 0.0098 \]</div>
+<p>So, the probability that the patient has the disease given a positive test result is approximately 0.98%.</p>
+</section>
+</section>
+<section id="applications-in-machine-learning">
+<h2>Applications in Machine Learning<a class="headerlink" href="#applications-in-machine-learning" title="Link to this heading">#</a></h2>
+<p>Bayes’ Theorem is foundational for many machine learning algorithms and techniques, including:</p>
+<section id="naive-bayes-classifier">
+<h3>Naive Bayes Classifier<a class="headerlink" href="#naive-bayes-classifier" title="Link to this heading">#</a></h3>
+<p>The Naive Bayes classifier is a simple yet powerful probabilistic classifier based on Bayes’ Theorem. It assumes that the features are conditionally independent given the class label, which simplifies the computation of the posterior probabilities.</p>
+<section id="example-naive-bayes-in-python">
+<h4>Example: Naive Bayes in Python<a class="headerlink" href="#example-naive-bayes-in-python" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># Load the Iris dataset</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span>
+
+<span class="c1"># Split the dataset into training and testing sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Initialize the Gaussian Naive Bayes classifier</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+
+<span class="c1"># Fit the model on the training data</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Predict the labels for the test data</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Calculate the accuracy of the model</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy: 97.78%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="bayesian-inference">
+<h3>Bayesian Inference<a class="headerlink" href="#bayesian-inference" title="Link to this heading">#</a></h3>
+<p>Bayesian inference uses Bayes’ Theorem to update the probability distribution of a parameter based on observed data. It combines prior knowledge with the likelihood of the observed data to obtain the posterior distribution.</p>
+</section>
+<section id="bayesian-networks">
+<h3>Bayesian Networks<a class="headerlink" href="#bayesian-networks" title="Link to this heading">#</a></h3>
+<p>Bayesian networks are graphical models that represent the probabilistic relationships among a set of variables. They use Bayes’ Theorem to perform inference and update beliefs based on new evidence.</p>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>Bayes’ Theorem is a powerful tool for updating probabilities based on new evidence. It is fundamental to many machine learning algorithms and techniques, providing a robust framework for probabilistic reasoning and inference. Understanding Bayes’ Theorem and its applications is essential for building and interpreting machine learning models.</p>
+<p>In the next section, we will delve deeper into descriptive statistics, which provide tools for summarizing and describing the main features of a dataset.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./mathematical_foundations/probability_and_statistics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="probability_distributions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Probability Distributions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="descriptive_statistics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Descriptive Statistics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition">Intuition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-medical-diagnosis">Example: Medical Diagnosis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-in-machine-learning">Applications in Machine Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-naive-bayes-in-python">Example: Naive Bayes in Python</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-inference">Bayesian Inference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-networks">Bayesian Networks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Keaton Scheible
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
